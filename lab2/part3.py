@@ -1,5 +1,4 @@
-for i in range(1, 8):
-    print("$", end="") 
-    for j in range(i - 1):
-        print(" ", end="")
-    print("$")
+for i in range(7):
+    for j in range(7):
+        if i == j:
+            print("$"+i*" "+"$")
