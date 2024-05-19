@@ -1,4 +1,11 @@
 def add_contact(address_book, file_name):
+    '''
+    This function takes name and email from user and adds it in address book dict.
+    :param address_book: The dictionary with name as key and the email as value.
+    :param file_name: The name of the file.
+    :return: None
+    '''
+    # take name and email as input from user
     name = input("Enter name: ")
     email = input("Enter email: ")
     # Check for duplicates first
@@ -12,6 +19,12 @@ def add_contact(address_book, file_name):
         print("\nContact added successfully")
 
 def search_contact(address_book):
+    '''
+    This function displays email by searching with name in the address  dict.
+
+    :param address_book:The dictionary with name as key and the email as value.
+    :return: None
+    '''
     if len(address_book) == 0:
         print("\nNo contacts.\n")
     else:
@@ -25,6 +38,13 @@ def search_contact(address_book):
             print(f"\nContact not found.")
 
 def list_all_contacts(address_book):
+    '''
+    This function displays name - email of all contacts in the address book dict.
+
+    :param address_book: The dictionary with name as key and the email as value.
+    :return: None
+    '''
+    # if dict is empty the print no contact else print all the name and email in the dict
     if len(address_book) == 0:
         print("\nNo Contacts")
     else:
@@ -33,10 +53,17 @@ def list_all_contacts(address_book):
             print(f"{contact['name']} - {contact['email']}")
 
 def load_address_book(file_name):
+    '''
+    This function reads from file and loads name and email in the address book dictionary.
+    :param file_name: The name of the file.
+    :return: The dictionary loaded with name and email from file.
+    '''
     address_book = []
     try:
+        #open file in read mode and print all line from file
         with open(file_name, 'r') as f:
             for line in f:
+                #get name and email seperated by , from each line
                 name, email = line.strip().split(',')
                 address_book.append({'name':name,'email':email})
     except FileNotFoundError:
@@ -45,9 +72,12 @@ def load_address_book(file_name):
     return address_book
 
 def main():
+    '''
+    This function gives a menu to the user and calls the appropriate functions based on the user's choice.
+    '''
     file_name = "address_book.txt"
     address_book = load_address_book(file_name)
-
+    #infinitw loop to give menu to user
     while True:
         print("\nAddress Book Program")
         print("1. Add a new contact")
