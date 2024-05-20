@@ -85,7 +85,7 @@ def main():
     '''
     file_name = "address_book.txt"
     address_book = load_address_book(file_name)
-    #infinitw loop to give menu to user and calls function according to their choice
+    #infinite loop to give menu to user and calls function according to their choice
     while True:
         print("\nAddress Book Program")
         print("1. Add a new contact")
