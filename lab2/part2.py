@@ -9,11 +9,12 @@ def add_contact(address_book, file_name):
     name = input("Enter name: ").strip()
     email = input("Enter email: ").strip()
     # Check if contact (name and email both) already exist first
-    if any(contact['name'] == name and contact['email'] == email for contact in address_book):
+    # Name check is case insensitive and email is already in lowercase
+    if any(contact['name'].lower() == name.lower() and contact['email'] == email.lower() for contact in address_book):
         print(f"\nContact {name} with email {email} already exists.")
     else:
         #if contact deos not exist the add it in dict and append in list
-        address_book.append({'name':name,'email':email})
+        address_book.append({'name':name,'email':email.lower()})
         with open(file_name, 'w') as f:
             for contact in address_book:
                 f.write(f"{contact['name']},{contact['email']}\n") # write name and email from each dict in addres_book list in file
@@ -36,7 +37,8 @@ def search_contact(address_book):
         #check each element(dict) in list
         for contact in address_book:
             # if name is found in address book then print it with its email
-            if name == contact['name']:
+            # searching is by default case insensitive
+            if name.lower() == contact['name'].lower():
                 count += 1
                 print(f"\nEmail for {contact['name']} is {contact['email']}.")
         if count == 0:
